@@ -1,10 +1,10 @@
-# 创建一个工作流水线，每天UTC 10：00执行一次，手动触发也可以
+name: Update Adblock SRS Rules
+
 on:
   schedule:
     - cron: '0 10 * * *'
   workflow_dispatch:
 
-# 使用ubuntu-latest环境，先定义环境变量ADBLOCKLIST1-5的链接，接下来下载这些链接的内容、下载并安装官方版本的sing-box
 env:
   ADBLOCKLIST1: https://raw.githubusercontent.com/hagezi/dns-blocklists/main/adblock/pro.txt
   ADBLOCKLIST2: https://raw.githubusercontent.com/Pideo1/bbbfg/refs/heads/main/myadrules.txt
@@ -19,38 +19,45 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-        # 先创建一个文件夹
+
       - name: Create folder
         run: |
           mkdir -p adblocklists
-      - name: Download ADBLOCKLIST1-10
+
+      - name: Download ADBLOCKLISTs
         run: |
-          curl -o adblocklists/hagezi_pro.txt ${{ env.ADBLOCKLIST1 }}
-          curl -o adblocklists/myadrules.txt ${{ env.ADBLOCKLIST2 }}
-          curl -o adblocklists/pcdn.txt ${{ env.ADBLOCKLIST3 }}
-          curl -o adblocklists/adrules.txt ${{ env.ADBLOCKLIST4 }}
-          curl -o adblocklists/mywhitelist.txt ${{ env.ADBLOCKLIST5 }}
+          curl -sSL -o adblocklists/hagezi_pro.txt ${{ env.ADBLOCKLIST1 }}
+          curl -sSL -o adblocklists/myadrules.txt ${{ env.ADBLOCKLIST2 }}
+          curl -sSL -o adblocklists/pcdn.txt ${{ env.ADBLOCKLIST3 }}
+          curl -sSL -o adblocklists/adrules.txt ${{ env.ADBLOCKLIST4 }}
+          curl -sSL -o adblocklists/mywhitelist.txt ${{ env.ADBLOCKLIST5 }}
 
       - name: Download and install sing-box
         run: |
           curl -L -o sing-box.deb https://github.com/SagerNet/sing-box/releases/download/v${{ env.SING_BOX_VERSION }}/sing-box_${{ env.SING_BOX_VERSION }}_linux_amd64.deb
           sudo apt install -f ./sing-box.deb
           rm sing-box.deb
-      # 开始转换，sing-box的转换语法是`sing-box rule-set convert --type adguard --output ./<filename>.srs ./<filename>.txt`，不支持批量转换，只能一个一个的转换
-      - name: convert
+
+      - name: Convert to SRS
         run: |
           sing-box rule-set convert --type adguard --output ./adblocklists/hagezi_pro.srs ./adblocklists/hagezi_pro.txt
           sing-box rule-set convert --type adguard --output ./adblocklists/myadrules.srs ./adblocklists/myadrules.txt
           sing-box rule-set convert --type adguard --output ./adblocklists/pcdn.srs ./adblocklists/pcdn.txt
           sing-box rule-set convert --type adguard --output ./adblocklists/adrules.srs ./adblocklists/adrules.txt
           sing-box rule-set convert --type adguard --output ./adblocklists/mywhitelist.srs ./adblocklists/mywhitelist.txt
-      # 上传到adblocklist分支的话
-      - name: upload to adblocklist branch
+
+      - name: Commit and push to adblocklist branch
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          
           git add adblocklists/
-          git commit -m "Update adblocklists"
-          git push
-
-
+          
+          # 检查是否有未提交的文件变更
+          if git diff --staged --quiet; then
+            echo "没有检测到任何规则更新，跳过提交。"
+          else
+            git commit -m "Update adblocklists: $(date -u +'%Y-%m-%d %H:%M:%S UTC')"
+            # 推送到远端的 adblocklist 分支
+            git push origin HEAD:refs/heads/adblocklist --force
+          fi

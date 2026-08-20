@@ -46,12 +46,17 @@ jobs:
           sing-box rule-set convert --type adguard --output ./adblocklists/adrules.srs ./adblocklists/adrules.txt
           sing-box rule-set convert --type adguard --output ./adblocklists/mywhitelist.srs ./adblocklists/mywhitelist.txt
 
+      - name: copy and remove adblocklists folder
+        run: |
+          cp adblocklists/* .
+          rm -rf adblocklists .github .gitattributes
+
       - name: Commit and push to adblocklist branch
         run: |
           git config --local user.name "github-actions[bot]"
           git config --local user.email "41898282+github-actions[bot]@users.noreply.github.com"
           
-          git add adblocklists/
+          git add .
           
           # 检查是否有未提交的文件变更
           if git diff --staged --quiet; then

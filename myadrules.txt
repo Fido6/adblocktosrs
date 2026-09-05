@@ -1,0 +1,296 @@
+[Adblock Plus 2.0]
+# Title: cccc's rules
+# Description: Personal Rules, Aggressive strategy, use with caution
+# 个人广告过滤规则，当作 Github.com/Cats-Team/AdRules的补充，只适用于 AdGuardHome
+# Update: 2026年 08月 12日 星期三 16:17:18 HKT
+
+#============================白名单开始===========================
+## 南方基金
+@@||h5no1.com^
+@@||sysdk.cl2009.com^
+
+## Tailscale
+@@||log.tailscale.com^
+
+## 网易游戏更新
+@@||update.netease.com^
+
+## oppo 部分放行，放行原因就是域名字面意思（相册的ai编辑功能、天气服务、日历节假日、录音软件里的ai工具、计算器软件等）
+@@||realme-ai-cn.allawntech.com^
+@@||weather-api-cn.allawntech.com^
+@@||weather-server.allawntech.com^
+@@||calendar-ext-cn.allawntech.com^
+@@||aitool-gateway-cn.allawntech.com^
+@@||calculator-api-cn.allawntech.com^
+@@||translate-service-cn.allawntech.com^
+@@||odin-inference-cn.allawntech.com^
+@@||tel-num-cn.heytapmobi.com^
+
+## vivo 部分放行
+@@||connectivitycheck.vivo.com.cn^
+
+#============================白名单结束===========================
+
+## 电视广告相关？
+/(huan|gitv)\.tv$/
+||mymlsoft.com^
+||z.cjjd14.com^
+||comfylink.com^
+
+## 让我联想一下
+/hao\.lenovo/
+/sams\.lenovo/
+/tbcloud\-test\.lenovo/
+/lenovows/
+
+## 乐播没母
+||ap-guangzhou.cls.tencentcs.com^
+/\.cibn\./
+/\.cibntv\./
+/hpplay\./
+/\.kkapp\./
+/\.lebo\./
+/play\-cdn9/
+
+## 4399网页爬取
+||jssdk.3304399.net^
+||4399stat.5054399.com^
+||up.feed.3304399.net^
+
+# 容易被利用于欺诈（其他人那里爬的）
+||funmart.beanfun.com^
+||gashpoint.com^
+
+# 诈骗域名(抖音刷到的)
+||iosidm.com.cn^
+||46662.top^
+||gracebaek.com^
+||iphone.ior.lat^
+/^[a-zA-Z0-9]{4}\.top$/
+/shbkzkk\.cn/
+
+## 云控
+/.*(sec|set|sys|browser|upda|inf).*miui\.c.*/
+/.*(lg|mistat|pandora).*xiaomi/
+/c\.mi\.c/
+/stsdk\.vivo/
+
+## 反诈
+@@||beian.miit.gov.cn^
+/(miit\.gov|mps\.gov|gjfzpt)\.cn$/
+
+# 下面这条是之前机圈很火的盗号 zygisk.apk 病毒请求域名
+||fdkss.sbs^
+
+## 123网盘启动时dns请求非123网盘域名
+||tdid.m.qq.com^
+||tanx.com^
+||shunchangzhixing.com^
+||66mobi.com^
+
+# 纯正则表达式，比较激进
+## 顶级域名后缀屏蔽
+/\.bid$/
+/\.biz$/
+/\.click$/
+/\.marketing$/
+/\.promo$/
+/\.br$/
+
+# 国产浏览器黑名单请求域名
+/browser(conf|r|cfg)\./
+
+# 遥测、日志、分析
+/^logs/
+/^logger/
+/analytic/
+/^stats.*/
+/^tracking\./
+/^track\./
+
+# 广告域名部分匹配
+/(^|\.|\-)(ad|admobile|adnet|ads|adscope|adsdk|adstrategy|adv|adx|beizi|click|iad|log|logs|lydaas|lydass|metrics|metric|pcdn|p2p|telemetry)(\.|$|\-)/
+/^adser.*/
+/advert/
+
+# oppo
+||realmebbs.com^
+||finzfin.com^
+||ioppo.net^
+||myoppo.com^
+||oneplusbbs.com^
+||opdwz.cn^
+/oppo\./
+/coloros\./
+/heytap/
+/realme\./
+/oppo(coloros|mobile|pay|shop|work|color|er|digital)\./
+/allawn(fs|o|os|tech)\./
+/(oneplus|realme)mobile\./
+||opstatics.com^
+/oneplus\./
+||nearme.com.cn^
+
+
+# 其他
+/^e\.so\./
+/.(heytap|oneplus|oppo|realme)mob(i|ile)\./
+/1rtb\.(com|net)/
+||51.la^
+/52qumao\.com/
+/8le8le\.com/
+/ad(b|u)kwai/
+/adkwai/
+/adprod\.cn/
+/aiclk/
+/allawn(os|tech)\.c/
+/anythinktech/
+/applk\.cn/
+/appsad\.c/
+/bayescom\.com/
+/bdcgslb\.com/
+/chengzijianzhana.com/
+/cloooud\.com/
+/cnzz\./
+/coloros.com/
+/ctjpqg\.cn/
+/domobcdn\.com/
+/fanglinad\.c/
+/flysleep\.cn/
+/gameley\.com/
+/getui/
+/gridsumdissector\.c(om|n)/
+/heytap/
+/hubcloud\.com\.cn/
+/igexin/
+/imageads/
+/jpush\./
+/kuaichuanad\.c/
+/kuaiyiad\.c/
+/m\-adnet/
+/maplehaze\.cn/
+/medproad\.c/
+/midongtech\./
+/miwuad\.c/
+/mktad\.cn/
+/mmstat\.com/
+/mob(surl|ads)/
+/mob\.c(o|om|n)/
+/oceanengine\.c(om|n)/
+/oneway\.mobi/
+/opstatistics\./
+/qchannel0/
+/qidianad\.c/
+/quminglemei\.com/
+/shuzilm/
+/skarb\.(club|work)/
+/tingyun\.com$/
+/tsyouto\.cn/
+/ttwebview\./
+/ubixioe\.com/
+/ucweb/
+/umeng/
+/umtrack[0-2]\./
+/unityads/
+/vlion\.c(om|n)/
+/wanyol\.c/
+/wrating\.com$/
+/wuchuyun\./
+/xdplt\.com$/
+/xinduoad\.com/
+/ydycdn\./
+/yingt\.fun/
+/yksdks\.c(om|n)/
+/z74d\.com/
+/zztfly\.com/
+
+
+## 字节跳动
+||i.snssdk.com^
+||sf3-ttcdn-tos.pstatp.com^
+/chengzijianzhan\.com|www\.toutiaopages\.com/
+||im-open.douyin.com^
+
+## i法轮 人士
+/falun/
+/minghui/
+/epochtimes/
+/ntdtv/
+/voachinese/
+/appledaily/
+/nextdigital/
+/dalailama/
+/nytimes/
+/bloomberg/
+/independent/
+/freetibet/
+/citizenpowerfor/
+||rfa.org^
+||theinitium.com^
+||tibet.net^
+||jw.org^
+/bannedbook/
+||dw.com^
+||storm.mg^
+||yam.com^
+/chinadigitaltimes/
+||ltn.com.tw^
+||mpweekly.com^
+||cup.com.hk^
+||thenewslens.com^
+||inside.com.tw^
+||everylittled.com^
+||cool3c.com^
+||taketla.zaiko.io^
+||news.agentm.tw^
+||sportsv.net^
+||research.tnlmedia.com^
+||ad2iction.com^
+||tnlmedia.com^
+||becomingaces.com^
+||pincong.rocks^
+||flipboard.com^
+||soundofhope.org^
+||wenxuecity.com^
+||aboluowang.com^
+||2047.name^
+||shenyunperformingarts.org^
+||cirosantilli^
+||wsj.com^
+||rfi.fr^
+||chinapress.com.my^
+||hancel.org^
+||miraheze.org^
+||zhuichaguoji.org^
+||fawanghuihui.org^
+||hopto.org^
+||amnesty.org^
+||hrw.org^
+||irmct.org^
+||zhengjian.org
+/wujieliulan/
+/dongtaiwang/
+||ultrasurf.us^
+||yibaochina.com^
+||roc-taiwan.org^
+||creaders.net^
+||upmedia.mg^
+||ydn.com.tw^
+||udn.com^
+||theaustralian.com.au^
+||rfa.org^
+||voacantonese.com^
+||voanews.com^
+||bitterwinter.org^
+||christianstudy.com^
+||usembassy-china.org.cn^
+||qi-gong.me^
+||zhengwunet.org^
+||modernchinastudies.org^
+||ninecommentaries.com^
+||dafahao.com^
+||shenyuncreations.com^
+||tgcchinese.org^
+||botanwang.com^
+||freedomhouse.org^
+||abc.net.au^

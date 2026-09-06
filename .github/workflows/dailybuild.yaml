@@ -11,6 +11,7 @@ env:
   ADBLOCKLIST3: https://raw.githubusercontent.com/4fuu/AdGuard-Home-PCDN/refs/heads/main/ban.txt
   ADBLOCKLIST4: https://raw.githubusercontent.com/Cats-Team/AdRules/main/dns.txt
   ADBLOCKLIST5: https://raw.githubusercontent.com/Pideo1/bbbfg/refs/heads/main/mywhitelist.txt
+  ADBLOCKLIST6: https://raw.githubusercontent.com/xianhongtao/AdGuard-AntiPCDN-Rules/refs/heads/main/adguard.txt
   SING_BOX_VERSION: 1.13.19
 
 jobs:
@@ -31,6 +32,7 @@ jobs:
           curl -sSL -o adblocklists/pcdn.txt ${{ env.ADBLOCKLIST3 }}
           curl -sSL -o adblocklists/adrules.txt ${{ env.ADBLOCKLIST4 }}
           curl -sSL -o adblocklists/mywhitelist.txt ${{ env.ADBLOCKLIST5 }}
+          curl -sSL -o adblocklists/xianhongtao.txt ${{ env.ADBLOCKLIST6 }}
 
       - name: Download and install sing-box
         run: |
@@ -45,6 +47,7 @@ jobs:
           sing-box rule-set convert --type adguard --output ./adblocklists/pcdn.srs ./adblocklists/pcdn.txt
           sing-box rule-set convert --type adguard --output ./adblocklists/adrules.srs ./adblocklists/adrules.txt
           sing-box rule-set convert --type adguard --output ./adblocklists/mywhitelist.srs ./adblocklists/mywhitelist.txt
+          sing-box rule-set convert --type adguard --output ./adblocklists/xianhongtao.srs ./adblocklists/xianhongtao.txt
 
       - name: copy and remove adblocklists folder
         run: |

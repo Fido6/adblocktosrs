@@ -1,2 +1,0 @@
-# Auto detect text files and perform LF normalization，改为强制使用 LF
-* text=auto eol=lf
